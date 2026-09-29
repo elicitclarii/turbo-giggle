@@ -1,9 +1,10 @@
 abstract class ChessPiece{
 
-    PieceType type;
-    String color;
-    ColType column;
-    int row;
+    // private doesn't allow subclass to directly access the attributes, changed to protected so they can access w .this -danny 
+    protected PieceType type;
+    protected String color;
+    protected ColType column;
+    protected int row;
 
     public ChessPiece(PieceType typeIn, String colorIn, ColType x, int y){
         this.type = typeIn;
@@ -13,10 +14,11 @@ abstract class ChessPiece{
     }
 
     public ChessPiece(){
-        this.type = type;
-        this.color = color;
-        this.column = column;
-        this.row = row;
+        // empty doesn't need to be assigned to itself, only when you're passing values in, otherwise you're just assigning the null values twice -danny
+        // this.type = type;
+        // this.color = color;
+        // this.column = column;
+        // this.row = row;
     }
 
     public PieceType getPieceType(){
@@ -39,8 +41,9 @@ abstract class ChessPiece{
         this.type = typeIn;
     }
 
+    //changed to &&, WHITE OR BLACK should be accepted, but not when it's neither color -danny
     public void setPieceColor(String color){
-        if (!color.equals("WHITE")|| !color.equals("BLACK")){
+        if (!color.equals("WHITE")&& !color.equals("BLACK")){
             System.out.println("This color cannot be applied, it must be either white or black");
         }
         this.color = color;
