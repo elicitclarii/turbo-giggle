@@ -41,10 +41,10 @@ abstract class ChessPiece{
         this.type = typeIn;
     }
 
-    //changed to &&, WHITE OR BLACK should be accepted, but not when it's neither color -danny
+    //changed to &&, WHITE OR BLACK should be accepted, but not when it's neither color, also has to throw exception so it doesn't set the color anyway -danny
     public void setPieceColor(String color){
-        if (!color.equals("WHITE")&& !color.equals("BLACK")){
-            System.out.println("This color cannot be applied, it must be either white or black");
+        if (!"WHITE".equals(color) && !"BLACK".equals(color)) {
+            throw new IllegalArgumentException("This color cannot be applied, it must be either WHITE or BLACK");
         }
         this.color = color;
     }

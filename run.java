@@ -1,5 +1,9 @@
 import java.util.Scanner;
 
+/*Emma Boushka
+Clarissa Esparza
+Alfredo Herrera
+ */
 public class run{
     // dec global scanner/board, all pieces use them
     private static final Scanner scanner = new Scanner(System.in);
