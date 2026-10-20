@@ -2,21 +2,18 @@ public class King extends Queen {
 
     public King() {
         super();
-        this.type = PieceType.KING;
+        setPieceType(PieceType.KING);
     }
 
-    public boolean verifyTarget(ColType newX, int newY) {
-        return isKingMove(newX, newY);
+    public King(String color, ColType column, int row) {
+        super(color, column, row);   // queen constr -> king inheritance 
+        setPieceType(PieceType.KING);    // then overwrite the inherited type
     }
 
-    private boolean isKingMove(ColType newX, int newY) {
-        int columnDifference = Math.abs(newX.ordinal() - this.column.ordinal());
-        int rowDifference = Math.abs(newY - this.row);
-
-        // King can move one square in any direction
-        // It cannot stay in the same position
-        return columnDifference <= 1
-            && rowDifference <= 1
-            && (columnDifference > 0 || rowDifference > 0);
+    @Override
+    public boolean verifyMove(ColType newX, int newY) {
+        // A King moves like a Queen, but only for ONE square
+        return super.verifyMove(newX, newY)
+            && Math.max(columnDistance(newX), rowDistance(newY)) == 1;
     }
 }

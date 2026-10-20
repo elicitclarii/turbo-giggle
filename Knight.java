@@ -1,20 +1,19 @@
-public class Knight extends ChessPiece{
+public class Knight extends ChessPiece {
 
-    public Knight(){
+    public Knight() {
         super();
-        this.type = PieceType.KNIGHT;
+        setPieceType(PieceType.KNIGHT);
     }
 
-    //the following code was adopted and modified from Lab2
-    public boolean verifyTarget(ColType newX, int newY){
-        return isKnightMove(newX, newY);
+    public Knight(String color, ColType column, int row) {
+        super(PieceType.KNIGHT, color, column, row);
     }
 
-    private boolean isKnightMove(ColType newX, int newY){
-        int columnDifference = Math.abs(newX.ordinal() - this.column.ordinal());
-        int rowDifference = Math.abs(newY - this.row);
-
-        return (columnDifference == 2 && rowDifference == 1)
-            || (columnDifference == 1 && rowDifference == 2);
+    @Override
+    public boolean verifyMove(ColType newX, int newY) {
+        // L-shape -> 2 squares one way and 1 the other
+        int c = columnDistance(newX);
+        int r = rowDistance(newY);
+        return (c == 2 && r == 1) || (c == 1 && r == 2);
     }
 }

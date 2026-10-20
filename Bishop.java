@@ -1,22 +1,17 @@
 public class Bishop extends ChessPiece {
-
+    //already set up piecetype and chesspiece w the works
     public Bishop() {
         super();
-        this.type = PieceType.BISHOP;
+        setPieceType(PieceType.BISHOP);
+    }
+    // use the piece type enum to build specific bishop piece 
+    public Bishop(String color, ColType column, int row) {
+        super(PieceType.BISHOP, color, column, row);
     }
 
-    public boolean verifyTarget(ColType newX, int newY) {
-        return isBishopMove(newX, newY);
-    }
-
-    private boolean isBishopMove(ColType newX, int newY) {
-        int columnDifference = Math.abs(newX.ordinal() - this.column.ordinal());
-        int rowDifference = Math.abs(newY - this.row);
-
+    @Override
+    public boolean verifyMove(ColType newX, int newY) {
         // Bishop moves diagonally
-        // The column and row distances must be equal
-        // Make sure it is not staying in the same position
-        return columnDifference > 0
-            && columnDifference == rowDifference;
+        return isDiagonalMove(newX, newY);
     }
 }

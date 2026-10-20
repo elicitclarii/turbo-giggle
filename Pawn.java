@@ -1,32 +1,29 @@
-public class Pawn extends ChessPiece{
+public class Pawn extends ChessPiece {
 
-    public Pawn(){
+    public Pawn() {
         super();
-        this.type = PieceType.PAWN;
+        setPieceType(PieceType.PAWN);
     }
 
-    //the following code was adopted and modified from Lab2
-
-    public boolean verifyTarget(ColType targetColumn, int targetRow) {
-        return isForwardMove(targetColumn, targetRow);
+    public Pawn(String color, ColType column, int row) {
+        super(PieceType.PAWN, color, column, row);
     }
 
-    private boolean isForwardMove(ColType targetColumn, int targetRow) {
-        if (targetColumn != this.column) {
-            return false;
-        }
+    @Override
+    public boolean verifyMove(ColType newX, int newY) {
+        // White moves up (+1), Black moves down (-1); one square, same column
         int direction;
-        // white pieces start on row 2, increment on +1 ->> Black pieces start on row 7, decrement on -1
-        if (this.color.equalsIgnoreCase("White")) {
+        if (getColor().equals("WHITE")) {
             direction = 1;
         } else {
             direction = -1;
         }
-        int rowDifference = targetRow - this.row;
+
+        int rowDifference = newY- this.getY();
         //can only move one space 'forward' for that pieces color
         if (rowDifference == direction) {
             return true;
-        }return false;
+        }
+        return false;
     }
-
 }

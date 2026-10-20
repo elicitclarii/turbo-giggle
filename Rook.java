@@ -1,21 +1,17 @@
 public class Rook extends ChessPiece {
-
+ 
     public Rook() {
         super();
-        this.type = PieceType.ROOK;
+        setPieceType(PieceType.ROOK);
     }
-
-    public boolean verifyTarget(ColType newX, int newY) {
-        return isRookMove(newX, newY);
+ 
+    public Rook(String color, ColType column, int row) {
+        super(PieceType.ROOK, color, column, row);
     }
-
-    private boolean isRookMove(ColType newX, int newY) {
-        int columnDifference = Math.abs(newX.ordinal() - this.column.ordinal());
-        int rowDifference = Math.abs(newY - this.row);
-
+ 
+   @Override 
+    public boolean verifyMove(ColType newX, int newY) {
         // Rook moves horizontally or vertically
-        // Make sure it is not staying in the same position
-        return (columnDifference == 0 && rowDifference > 0)
-            || (columnDifference > 0 && rowDifference == 0);
+        return isStraightMove(newX, newY);
     }
 }

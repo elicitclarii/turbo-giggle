@@ -2,25 +2,18 @@ public class Queen extends Rook {
 
     public Queen() {
         super();
-        this.type = PieceType.QUEEN;
+        setPieceType(PieceType.QUEEN);
     }
 
-    public boolean verifyTarget(ColType newX, int newY) {
-        return isQueenMove(newX, newY);
+    public Queen(String color, ColType column, int row) {
+        super(color, column, row);   // Rook -> queen inheritance chain
+        setPieceType(PieceType.QUEEN);    // then overwrite the inherited type
     }
 
-    private boolean isQueenMove(ColType newX, int newY) {
-        int columnDifference = Math.abs(newX.ordinal() - this.column.ordinal());
-        int rowDifference = Math.abs(newY - this.row);
-
-        // Queen can move like a Rook
-        boolean rookMove = (columnDifference == 0 && rowDifference > 0)
-            || (columnDifference > 0 && rowDifference == 0);
-
-        // Queen can also move like a Bishop
-        boolean bishopMove = columnDifference > 0
-            && columnDifference == rowDifference;
-
-        return rookMove || bishopMove;
+    @Override
+    public boolean verifyMove(ColType newX, int newY) {
+        // Inherited Rook rule (straight lines) OR the diagonal rule.
+        // Queen extends Rook, so the diagonal part has to be added here
+        return super.verifyMove(newX, newY) || isDiagonalMove(newX, newY);
     }
 }

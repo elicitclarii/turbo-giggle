@@ -32,7 +32,7 @@ public class run{
         // traverse the stored pieces, print if they can move
         for (int i = 0; i < pieces.length; i++) {
             ChessPiece piece = pieces[i];
-            boolean canMove = piece.verifyTarget(targetCol, targetRow);
+            boolean canMove = piece.verifyMove(targetCol, targetRow);
 
             String verdict = " can";
             if(!canMove){ verdict = " cannot"; }
