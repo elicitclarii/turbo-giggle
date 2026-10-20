@@ -140,7 +140,16 @@ public class run{
         }
     }
 
-
-
-
 }
+
+/* File structre for packages: 
+project/
+  run.java                      (default access point: no package line)
+  chess/
+    enums/        PieceType.java  ChessColor.java  LocationX.java
+    exceptions/   InvalidPieceNameException.java  InvalidMoveException.java  InvalidCoordinateException.java
+    interfaces/   IntFigure.java  IntBishop.java  IntChessBoard.java
+    figures/      Figure.java  Rook.java  ...
+    board/        ChessBoard.java
+
+*/
